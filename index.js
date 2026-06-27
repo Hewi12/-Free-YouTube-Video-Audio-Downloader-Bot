@@ -3,8 +3,13 @@ import { exec } from 'child_process';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
-
+import express from 'express';
 dotenv.config();
+
+const app = express();
+app.get('/', (req, res) => res.send('Bot is Running Online! 🚀'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 const userRequests = new Map();
